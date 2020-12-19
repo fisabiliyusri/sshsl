@@ -306,17 +306,17 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # download script
 cd /usr/bin
-wget -O menu "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/menu.sh"
+wget -O menu "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-login.sh"
-wget -O member "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-list.sh"
-wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/info.sh"
-wget -O about "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/about.sh"
-wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/delete.sh"
+wget -O trial "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/user-list.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/info.sh"
+wget -O about "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/about.sh"
+wget -O delete "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/delete.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
