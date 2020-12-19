@@ -11,10 +11,10 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 country=ID
 state=Semarang
 locality=JawaTengah
-organization=hidessh
-organizationalunit=HideSSH
-commonname=hidessh.com
-email=admin@hidessh.com
+organization=sulaimanssh
+organizationalunit=SLSSH
+commonname=telkomsel.com
+email=sulaiman.xl@facebook.com
 
 # go to root
 cd
@@ -119,12 +119,12 @@ systemctl enable vnstat
 chkconfig vnstat on
 chown -R vnstat:vnstat /var/lib/vnstat
 
-# install squid3
-cd
-apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf;
-/etc/init.d/squid restart
+# saya matikan install squid3
+# cd
+# apt-get -y install squid3
+# wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
+# sed -i $MYIP2 /etc/squid/squid.conf;
+# /etc/init.d/squid restart
 
 echo "=================  saya matikan install Webmin  ======================"
 echo "========================================================="
@@ -158,6 +158,12 @@ connect = 127.0.0.1:44
 [dropbear]
 accept = 777
 connect = 127.0.0.1:77
+[ssh]
+accept = 43
+connect = 127.0.0.1:143
+[python]
+accept = 69
+connect = 127.0.0.1:6969
 
 END
 
@@ -332,7 +338,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/stunnel4 restart
-service squid restart
+#service squid restart
 /etc/init.d/nginx restart
 #/etc/init.d/openvpn restart
 rm -rf ~/.bash_history && history -c
@@ -342,17 +348,20 @@ echo "unset HISTFILE" >> /etc/profile
 clear
 echo "Autoscript Include:" | tee log-install.txt
 echo "===========================================" | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "Service"  | tee -a log-install.txt
-echo "-------"  | tee -a log-install.txt
-echo "OpenSSH   : 22,143"  | tee -a log-install.txt
-echo "Dropbear  : 109,456"  | tee -a log-install.txt
-echo "SSL       : 443"  | tee -a log-install.txt
-echo "Squid3    : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
-echo "badvpn    : badvpn-udpgw port 7300"  | tee -a log-install.txt
-echo "nginx     : 81"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "Script"  | tee -a log-install.txt
+echo ""            | tee -a log-install.txt
+echo "Service"     | tee -a log-install.txt
+echo "-------"     | tee -a log-install.txt
+echo "OpenSSH      : 22,143"  | tee -a log-install.txt
+echo "Dropbear     : 109,456"  | tee -a log-install.txt
+echo "SSL          : 443"  | tee -a log-install.txt
+echo "SSL OpenSSH  : 43"  | tee -a log-install.txt
+echo "SSL Dropbear : 222,444,777"  | tee -a log-install.txt
+echo "SSL SSR      : 69"  | tee -a log-install.txt
+# echo "Squid3     : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
+echo "badvpn       : badvpn-udpgw port 7300"  | tee -a log-install.txt
+echo "nginx        : 81"  | tee -a log-install.txt
+echo ""            | tee -a log-install.txt
+echo "Script"      | tee -a log-install.txt
 echo "------"  | tee -a log-install.txt
 echo "menu      : Menampilkan daftar perintah yang tersedia"  | tee -a log-install.txt
 echo "usernew   : Membuat Akun SSH"  | tee -a log-install.txt
@@ -398,7 +407,7 @@ echo "========================================================="
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/stunnel4 restart
-/etc/init.d/squid restart
+#/etc/init.d/squid restart
 /etc/init.d/nginx restart
 #/etc/init.d/php5.6-fpm restart
 #/etc/init.d/openvpn restart
