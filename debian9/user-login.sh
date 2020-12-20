@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Script Copyright HideSSH
-# Mod by hideSSH
+# Script Copyright SLSSH
+# Mod by Sulaiman L
 # ==========================
 # 
 
@@ -50,6 +50,6 @@ echo "------------------------------------------------"
 
 echo "";
 
-echo "Mod by partner HideSSH";
+echo "Mod by partner SLSSH";
 
 echo "";
