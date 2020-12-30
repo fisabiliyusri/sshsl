@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/centos/s
 * Script Installasi SSH Debian 9 64bit
 --------
 ```
-wget https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/openssh.sh && chmod +x openssh.sh && bash openssh.sh
+wget https://github.com/fisabiliyusri/sshsl/raw/master/debian9/openssh.sh && chmod +x openssh.sh && bash openssh.sh
 ```
 
 * Script Installasi OpenVPN Debian 9 64bit
