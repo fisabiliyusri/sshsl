@@ -72,16 +72,11 @@ apt-get -y install git
 apt-get -y install screen
 apt-get -y install unzip
 apt-get -y install curl
-git clone https://github.com/dylanaraps/neofetch
-cd neofetch
-make install
-make PREFIX=/usr/local install
-make PREFIX=/boot/home/config/non-packaged install
-make -i install
+apt-get -y install ruby
+gem install lolcat
 apt-get -y install neofetch
 cd
-echo "clear" >> .bashrc
-echo "neofetch" >> .bashrc
+echo "neofetch" >> .profile
 
 # instal php5.6 ubuntu 16.04 64bit
 apt-get -y update
@@ -92,6 +87,10 @@ apt-get -y update
 
 # setting port ssh
 cd
+sed -i '/Port 22/a Port 1078' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 8000' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 400' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
@@ -103,7 +102,7 @@ echo "========================================================="
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=44/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 77 "/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 450 -p 550 -p 9000 -p 77 "/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
@@ -149,21 +148,42 @@ client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
-[dropbear]
+[sslopenssh]
 accept = 222
 connect = 127.0.0.1:22
-[dropbear]
-accept = 444
-connect = 127.0.0.1:44
-[dropbear]
-accept = 777
-connect = 127.0.0.1:77
-[ssh]
+[sslopenssh]
 accept = 43
 connect = 127.0.0.1:143
-[python]
+[sshsslssr]
 accept = 69
 connect = 127.0.0.1:6969
+[sslopenssh]
+accept = 600
+connect = 127.0.0.1:400
+[sshopenssh]
+accept = 700
+connect = 127.0.0.1:200
+[sshopenssh]
+accept = 800
+connect = 127.0.0.1:1078
+[sshopenssh]
+accept = 900
+connect = 127.0.0.1:8000
+[ssldropbear]
+accept = 444
+connect = 127.0.0.1:44
+[ssldropbear]
+accept = 777
+connect = 127.0.0.1:77
+[ssldropbear]
+accept = 540
+connect = 127.0.0.1:450
+[ssldropbear]
+accept = 551
+connect = 127.0.0.1:550
+[ssldropbear]
+accept = 9900
+connect = 127.0.0.1:9000
 
 END
 
