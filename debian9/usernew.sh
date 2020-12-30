@@ -10,22 +10,24 @@ useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e ""
-echo -e "====Informasi SSH Account===="
-echo -e "====  Premium Akun SSH   ===="
-echo -e "Host              : $IP" 
-echo -e "Port OpenSSH      : 22,143"
-echo -e "Dropbear          : 44,77"
-echo -e "SSL/TLS           : 443"
-echo -e "SSL/TLS OpenSSH   : 43"
-echo -e "SSL/TLS Dropbear  : 222,777,444"
-echo -e "SSL/TLS SSR       : 69"
-echo -e "Speed Server      : 2 Gbps"
-echo -e "Transfer          : 2 TB"
-echo -e "Username          : $Login "
-echo -e "Password          : $Pass"
-echo -e "-----------------------------"
-echo -e "Aktif Sampai      : $exp"
-echo -e "============================="
+echo -e "====Informasi SSH Account====" | lolcat
+echo -e "====  Premium Akun SSH   ====" | lolcat
+echo -e "Host : $IP" | lolcat
+echo -e "Port SSH" | lolcat
+echo -e "OpenSSH : 143,200,400,1078,8000" | lolcat
+echo -e "Dropbear : 44,77,450,550,9000" | lolcat
+echo -e "SSL/TLS SSH : 443" | lolcat
+echo -e "SSL/TLS OpenSSH : 43,600,700,800,900" | lolcat
+echo -e "SSL/TLS Dropbear : 444,540,551,777,9900" | lolcat
+echo -e "SSL/TLS SSR SSH : 69" | lolcat
+echo -e "BadVPN-UDPGW : 7100,7200,7300,7400" | lolcat
+echo -e "Speed Server : 2 Gbps" | lolcat
+echo -e "Transfer : 2 TB" | lolcat
+echo -e "Username : $Login " | lolcat
+echo -e "Password : $Pass" | lolcat
+echo -e "-----------------------------" | lolcat
+echo -e "Aktif Sampai      : $exp" | lolcat
+echo -e "=============================" | lolcat
 
-echo -e "Mod by Sulaiman L"
+echo -e "Mod by Sulaiman L" | lolcat
 echo -e ""
