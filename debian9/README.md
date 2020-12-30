@@ -1,4 +1,11 @@
 * Script Installasi SSH Debian 9 64bit
+------
+wget https://github.com/fisabiliyusri/sshsl/raw/master/debian9/openssh.sh && chmod +x openssh.sh && bash openssh.sh
+
+--------
+```
+wget https://github.com/fisabiliyusri/sshsl/raw/master/debian9/openssh.sh && chmod +x openssh.sh && bash openssh.sh
+```
 --------
 ```
 wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openssh.sh && chmod +x openssh.sh && bash openssh.sh
