@@ -10,4 +10,10 @@
 service squid restart
 /etc/init.d/nginx restart
 /etc/init.d/openvpn restart
+service cron restart
+service nginx start
+service php-fpm start
+service vnstat restart
+service openvpn restart
+service snmpd restart
 exit
