@@ -37,10 +37,10 @@ cd
 sudo apt-get -y install nginx
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/nginx-default.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/nginx-default.conf"
 mkdir -p /home/vps/public_html
 echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/vhost-nginx.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/vhost-nginx.conf"
 /etc/init.d/nginx restart
 
 # instal nginx php5.6 
@@ -54,15 +54,15 @@ sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/5.6/cli/php.ini
 sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/5.6/cli/php.ini
 
 # Cari config php fpm www.conf dengan perintah berikut "find / \( -iname "php.ini" -o -name "www.conf" \)"
-sed -i 's/listen = \/run\/php\/php5.6-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/5.6/fpm/pool.d/www.conf
+sed -i 's/listen = \/run\/php\/php5.6-fpm.sock/listen = 127.0.0.1:9100/g' /etc/php/5.6/fpm/pool.d/www.conf
 cd
 
 
-# Edit port apache2 ke 8090
-wget -O /etc/apache2/ports.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/apache2.conf"
+# Edit port apache2 ke 8099
+wget -O /etc/apache2/ports.conf "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/apache2.conf"
 
-# Edit port virtualhost apache2 ke 8090
-wget -O /etc/apache2/sites-enabled/000-default.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/virtualhost.conf"
+# Edit port virtualhost apache2 ke 8099
+wget -O /etc/apache2/sites-enabled/000-default.conf "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/virtualhost.conf"
 
 # restart apache2
 /etc/init.d/apache2 restart
@@ -79,8 +79,8 @@ mkdir /etc/openvpn/easy-rsa/keys
 
 # Kemudian edit file variabel easy-rsa
 # nano /etc/openvpn/easy-rsa/vars
-wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/vars.conf"
-# edit projek export KEY_NAME="white-vps"
+wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/vars.conf"
+# edit projek export KEY_NAME="sl-vps"
 # Save dan keluar dari editor
 
 # generate Diffie hellman parameters
@@ -102,22 +102,22 @@ echo "unique_subject = no" >> keys/index.txt.attr
 # Certificate Authority (CA)
 ./build-ca
 
-# buat server key name yang telah kita buat sebelum nya yakni "white-vps"
-./build-key-server white-vps
+# buat server key name yang telah kita buat sebelum nya yakni "sl-vps"
+./build-key-server sl-vps
 
 # generate ta.key
 openvpn --genkey --secret keys/ta.key
 
-# Buat config server UDP 1194
+# Buat config server UDP 2021
 cd /etc/openvpn
 
-cat > /etc/openvpn/server-udp-1194.conf <<-END
-port 1194
+cat > /etc/openvpn/server-udp-2021.conf <<-END
+port 2021
 proto udp
 dev tun
 ca easy-rsa/keys/ca.crt
-cert easy-rsa/keys/white-vps.crt
-key easy-rsa/keys/white-vps.key
+cert easy-rsa/keys/sl-vps.crt
+key easy-rsa/keys/sl-vps.key
 dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 client-cert-not-required
@@ -131,18 +131,18 @@ keepalive 5 30
 comp-lzo
 persist-key
 persist-tun
-status server-udp-1194.log
+status server-udp-2021.log
 verb 3
 END
 
-# Buat config server TCP 1194
-cat > /etc/openvpn/server-tcp-1194.conf <<-END
-port 1194
+# Buat config server TCP 2021
+cat > /etc/openvpn/server-tcp-2021.conf <<-END
+port 2021
 proto tcp
 dev tun
 ca easy-rsa/keys/ca.crt
-cert easy-rsa/keys/white-vps.crt
-key easy-rsa/keys/white-vps.key
+cert easy-rsa/keys/sl-vps.crt
+key easy-rsa/keys/sl-vps.key
 dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 client-cert-not-required
@@ -156,18 +156,18 @@ keepalive 5 30
 comp-lzo
 persist-key
 persist-tun
-status server-tcp-1194.log
+status server-tcp-2021.log
 verb 3
 END
 
-# Buat config server UDP 2200
-cat > /etc/openvpn/server-udp-2200.conf <<-END
-port 2200
+# Buat config server UDP 2069
+cat > /etc/openvpn/server-udp-2069.conf <<-END
+port 2069
 proto udp
 dev tun
 ca easy-rsa/keys/ca.crt
-cert easy-rsa/keys/white-vps.crt
-key easy-rsa/keys/white-vps.key
+cert easy-rsa/keys/sl-vps.crt
+key easy-rsa/keys/sl-vps.key
 dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 client-cert-not-required
@@ -181,18 +181,18 @@ keepalive 5 30
 comp-lzo
 persist-key
 persist-tun
-status server-udp-2200.log
+status server-udp-2069.log
 verb 3
 END
 
-# Buat config server TCP 2200
-cat > /etc/openvpn/server-tcp-2200.conf <<-END
-port 2200
+# Buat config server TCP 2069
+cat > /etc/openvpn/server-tcp-2069.conf <<-END
+port 2069
 proto tcp
 dev tun
 ca easy-rsa/keys/ca.crt
-cert easy-rsa/keys/white-vps.crt
-key easy-rsa/keys/white-vps.key
+cert easy-rsa/keys/sl-vps.crt
+key easy-rsa/keys/sl-vps.key
 dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 client-cert-not-required
@@ -212,7 +212,7 @@ END
 
 cd
 
-cp /etc/openvpn/easy-rsa/keys/{white-vps.crt,white-vps.key,ca.crt,ta.key} /etc/openvpn
+cp /etc/openvpn/easy-rsa/keys/{sl-vps.crt,sl-vps.key,ca.crt,ta.key} /etc/openvpn
 ls /etc/openvpn
 
 # nano /etc/default/openvpn
@@ -232,19 +232,17 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
 # Konfigurasi dan Setting untuk Client
 mkdir clientconfig
-cp /etc/openvpn/easy-rsa/keys/{white-vps.crt,white-vps.key,ca.crt,ta.key} clientconfig/
+cp /etc/openvpn/easy-rsa/keys/{sl-vps.crt,sl-vps.key,ca.crt,ta.key} clientconfig/
 cd clientconfig
 
-# Buat config client UDP 1194
+# Buat config client UDP 2021
 cd /etc/openvpn
-cat > /etc/openvpn/client-udp-1194.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
-##### DONT FORGET TO SUPPORT US #####
+cat > /etc/openvpn/client-udp-2021.ovpn <<-END
+##### Sulaiman L OpenVPN UDP #####
 client
 dev tun
 proto udp
-remote xxxxxxxxx 1194
+remote xxxxxxxxx 2021
 resolv-retry infinite
 route-method exe
 nobind
@@ -255,17 +253,15 @@ comp-lzo
 verb 3
 END
 
-sed -i $MYIP2 /etc/openvpn/client-udp-1194.ovpn;
+sed -i $MYIP2 /etc/openvpn/client-udp-2021.ovpn;
 
-# Buat config client TCP 1194
-cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSHSSH.COM #####
-##### DONT FORGET TO SUPPORT US #####
+# Buat config client TCP 2021
+cat > /etc/openvpn/client-tcp-2021.ovpn <<-END
+##### Sulaiman L OpenVPN TCP #####
 client
 dev tun
 proto tcp
-remote xxxxxxxxx 1194
+remote xxxxxxxxx 2021
 resolv-retry infinite
 route-method exe
 nobind
@@ -276,17 +272,15 @@ comp-lzo
 verb 3
 END
 
-sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
+sed -i $MYIP2 /etc/openvpn/client-tcp-2021.ovpn;
 
-# Buat config client UDP 2200
-cat > /etc/openvpn/client-udp-2200.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
-##### DONT FORGET TO SUPPORT US #####
+# Buat config client UDP 2069
+cat > /etc/openvpn/client-udp-2069.ovpn <<-END
+##### Sulaiman L OpenVPN UDP #####
 client
 dev tun
 proto udp
-remote xxxxxxxxx 2200
+remote xxxxxxxxx 2069
 resolv-retry infinite
 route-method exe
 nobind
@@ -297,17 +291,15 @@ comp-lzo
 verb 3
 END
 
-sed -i $MYIP2 /etc/openvpn/client-udp-2200.ovpn;
+sed -i $MYIP2 /etc/openvpn/client-udp-2069.ovpn;
 
-# Buat config client TCP 2200
-cat > /etc/openvpn/client-tcp-2200.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
-##### DONT FORGET TO SUPPORT US #####
+# Buat config client TCP 2069
+cat > /etc/openvpn/client-tcp-2069.ovpn <<-END
+##### Sulaiman L OpenVPN TCP #####
 client
 dev tun
 proto tcp
-remote xxxxxxxxx 2200
+remote xxxxxxxxx 2069
 ##### Modification VPN #####
 http-proxy-retry
 http-proxy xxxxxxxxx 3128
@@ -325,42 +317,42 @@ END
 
 cd
 
-sed -i $MYIP2 /etc/openvpn/client-tcp-2200.ovpn;
+sed -i $MYIP2 /etc/openvpn/client-tcp-2069.ovpn;
 
 # pada tulisan xxx ganti dengan alamat ip address VPS anda 
 /etc/init.d/openvpn restart
 
-# masukkan certificatenya ke dalam config client TCP 1194
-echo '<ca>' >> /etc/openvpn/client-tcp-1194.ovpn
-cat /etc/openvpn/ca.crt >> /etc/openvpn/client-tcp-1194.ovpn
-echo '</ca>' >> /etc/openvpn/client-tcp-1194.ovpn
+# masukkan certificatenya ke dalam config client TCP 2021
+echo '<ca>' >> /etc/openvpn/client-tcp-2021.ovpn
+cat /etc/openvpn/ca.crt >> /etc/openvpn/client-tcp-2021.ovpn
+echo '</ca>' >> /etc/openvpn/client-tcp-2021.ovpn
 
-# masukkan certificatenya ke dalam config client UDP 1194
-echo '<ca>' >> /etc/openvpn/client-udp-1194.ovpn
-cat /etc/openvpn/ca.crt >> /etc/openvpn/client-udp-1194.ovpn
-echo '</ca>' >> /etc/openvpn/client-udp-1194.ovpn
+# masukkan certificatenya ke dalam config client UDP 2021
+echo '<ca>' >> /etc/openvpn/client-udp-2021.ovpn
+cat /etc/openvpn/ca.crt >> /etc/openvpn/client-udp-2021.ovpn
+echo '</ca>' >> /etc/openvpn/client-udp-2021.ovpn
 
-# Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 1194 )
-cp /etc/openvpn/client-tcp-1194.ovpn /home/vps/public_html/client-tcp-1194.ovpn
+# Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 2021 )
+cp /etc/openvpn/client-tcp-2021.ovpn /home/vps/public_html/client-tcp-2021.ovpn
 
-# Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 1194 )
-cp /etc/openvpn/client-udp-1194.ovpn /home/vps/public_html/client-udp-1194.ovpn
+# Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 2021 )
+cp /etc/openvpn/client-udp-2021.ovpn /home/vps/public_html/client-udp-2021.ovpn
 
-# masukkan certificatenya ke dalam config client TCP 2200
-echo '<ca>' >> /etc/openvpn/client-tcp-2200.ovpn
-cat /etc/openvpn/ca.crt >> /etc/openvpn/client-tcp-2200.ovpn
-echo '</ca>' >> /etc/openvpn/client-tcp-2200.ovpn
+# masukkan certificatenya ke dalam config client TCP 2069
+echo '<ca>' >> /etc/openvpn/client-tcp-2069.ovpn
+cat /etc/openvpn/ca.crt >> /etc/openvpn/client-tcp-2069.ovpn
+echo '</ca>' >> /etc/openvpn/client-tcp-2069.ovpn
 
-# masukkan certificatenya ke dalam config client UDP 2200
-echo '<ca>' >> /etc/openvpn/client-udp-2200.ovpn
-cat /etc/openvpn/ca.crt >> /etc/openvpn/client-udp-2200.ovpn
-echo '</ca>' >> /etc/openvpn/client-udp-2200.ovpn
+# masukkan certificatenya ke dalam config client UDP 2069
+echo '<ca>' >> /etc/openvpn/client-udp-2069.ovpn
+cat /etc/openvpn/ca.crt >> /etc/openvpn/client-udp-2069.ovpn
+echo '</ca>' >> /etc/openvpn/client-udp-2069.ovpn
 
-# Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 2200 )
-cp /etc/openvpn/client-tcp-2200.ovpn /home/vps/public_html/client-tcp-2200.ovpn
+# Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 2069 )
+cp /etc/openvpn/client-tcp-2069.ovpn /home/vps/public_html/client-tcp-2069.ovpn
 
-# Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 2200 )
-cp /etc/openvpn/client-udp-2200.ovpn /home/vps/public_html/client-udp-2200.ovpn
+# Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 2069 )
+cp /etc/openvpn/client-udp-2069.ovpn /home/vps/public_html/client-udp-2069.ovpn
 
 
 # iptables-persistent
