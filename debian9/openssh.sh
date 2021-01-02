@@ -326,17 +326,17 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # download script
 cd /usr/bin
-wget -O menu "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/user-login.sh"
-wget -O member "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/user-list.sh"
-wget -O jurus69 "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/info.sh"
-wget -O about "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/about.sh"
-wget -O delete "https://raw.githubusercontent.com/fisabiliyusri/sulaimanssh/master/debian9/delete.sh"
+wget -O menu "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/user-list.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/info.sh"
+wget -O about "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/about.sh"
+wget -O delete "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/delete.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
@@ -360,7 +360,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/stunnel4 restart
 #service squid restart
 /etc/init.d/nginx restart
-#/etc/init.d/openvpn restart
+/etc/init.d/openvpn restart
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
 
@@ -377,7 +377,6 @@ echo "SSL          : 443"  | tee -a log-install.txt
 echo "SSL OpenSSH  : 43"  | tee -a log-install.txt
 echo "SSL Dropbear : 222,444,777"  | tee -a log-install.txt
 echo "SSL SSR      : 69"  | tee -a log-install.txt
-# echo "Squid3     : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
 echo "badvpn       : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo "nginx        : 81"  | tee -a log-install.txt
 echo ""            | tee -a log-install.txt
@@ -421,6 +420,7 @@ echo "================  install OPENVPN  saya disable======================"
 echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
 #wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+wget https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 echo "==================== Restart Service ===================="
 echo "========================================================="
@@ -429,8 +429,8 @@ echo "========================================================="
 /etc/init.d/stunnel4 restart
 # /etc/init.d/squid restart
 /etc/init.d/nginx restart
-# /etc/init.d/php5.6-fpm restart
-# /etc/init.d/openvpn restart
+/etc/init.d/php5.6-fpm restart
+/etc/init.d/openvpn restart
 
 # Delete script
 #rm -f /root/openvpn.sh
