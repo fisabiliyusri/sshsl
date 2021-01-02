@@ -20,13 +20,17 @@ echo -e "SSL/TLS SSH : 443" | lolcat
 echo -e "SSL/TLS OpenSSH : 43,600,700,800,900" | lolcat
 echo -e "SSL/TLS Dropbear : 444,540,551,777,9900" | lolcat
 echo -e "SSL/TLS SSR SSH : 69" | lolcat
-echo -e "BadVPN-UDPGW : 7100,7200,7300,7400" | lolcat
+echo -e "BadVPN-UDPGW : 7100,7200,7300" | lolcat
 echo -e "Speed Server : 2 Gbps" | lolcat
 echo -e "Transfer : 2 TB" | lolcat
 echo -e "Username : $Login " | lolcat
 echo -e "Password : $Pass" | lolcat
 echo -e "-----------------------------" | lolcat
 echo -e "Aktif Sampai      : $exp" | lolcat
+echo -e "Config OpenVPN TCP: http://$IP:82/client-tcp-2021.ovpn"
+echo -e "Config OpenVPN UDP: http://$IP:82/client-udp-2021.ovpn"
+echo -e "Config OpenVPN TCP: http://$IP:82/client-tcp-2069.ovpn"
+echo -e "Config OpenVPN UDP: http://$IP:82/client-udp-2069.ovpn"
 echo -e "=============================" | lolcat
 
 echo -e "Mod by Sulaiman L" | lolcat
