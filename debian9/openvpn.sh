@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Original script by fornesia, rzengineer and fawzya
-# Mod by admin Hidessh
+# Mod by SL
 # ==================================================
 
 # initialisasi var
@@ -301,9 +301,9 @@ dev tun
 proto tcp
 remote xxxxxxxxx 2069
 ##### Modification VPN #####
-http-proxy-retry
-http-proxy xxxxxxxxx 3128
-http-proxy-option CUSTOM-HEADER Host google.com
+# http-proxy-retry #
+# http-proxy xxxxxxxxx 3128 #
+# http-proxy-option CUSTOM-HEADER Host google.com #
 ##### DONT FORGET TO SUPPORT US #####
 resolv-retry infinite
 route-method exe
@@ -403,7 +403,7 @@ iptables -A POSTROUTING -t nat -j MASQUERADE
 iptables-save > /etc/iptables-opvpn.conf
 
 # Restore iptables
-wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/iptables-local"
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/iptables-local"
 chmod +x /etc/network/if-up.d/iptables
 
 # Restore iptables rc.local
@@ -412,10 +412,10 @@ chmod +x /etc/network/if-up.d/iptables
 
 # install squid3
 cd
-apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf;
-/etc/init.d/squid restart
+# apt-get -y install squid3
+# wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
+# sed -i $MYIP2 /etc/squid/squid.conf;
+# /etc/init.d/squid restart
 
 # download script
 cd /usr/bin
