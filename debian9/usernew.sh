@@ -21,8 +21,8 @@ echo -e "SSL/TLS OpenSSH : 43,600,700,800,900" | lolcat
 echo -e "SSL/TLS Dropbear : 444,540,551,777,9900" | lolcat
 echo -e "SSL/TLS SSR SSH : 69" | lolcat
 echo -e "BadVPN-UDPGW : 7100,7200,7300" | lolcat
-echo -e "Speed Server : 2 Gbps" | lolcat
-echo -e "Transfer : 2 TB" | lolcat
+echo -e "Speed Server : 1 Gbps" | lolcat
+echo -e "Transfer : 1 TB" | lolcat
 echo -e "Username : $Login " | lolcat
 echo -e "Password : $Pass" | lolcat
 echo -e "-----------------------------" | lolcat
