@@ -359,8 +359,8 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/dropbear restart
 /etc/init.d/stunnel4 restart
 #service squid restart
-/etc/init.d/nginx restart
-/etc/init.d/openvpn restart
+#/etc/init.d/nginx restart
+#/etc/init.d/openvpn restart
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
 
@@ -420,7 +420,7 @@ echo "================  install OPENVPN  saya disable======================"
 echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
 #wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
-wget https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+#wget https://raw.githubusercontent.com/fisabiliyusri/sshsl/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 echo "==================== Restart Service ===================="
 echo "========================================================="
@@ -428,9 +428,9 @@ echo "========================================================="
 /etc/init.d/dropbear restart
 /etc/init.d/stunnel4 restart
 # /etc/init.d/squid restart
-/etc/init.d/nginx restart
-/etc/init.d/php5.6-fpm restart
-/etc/init.d/openvpn restart
+#/etc/init.d/nginx restart
+#/etc/init.d/php5.6-fpm restart
+#/etc/init.d/openvpn restart
 
 # Delete script
 #rm -f /root/openvpn.sh
