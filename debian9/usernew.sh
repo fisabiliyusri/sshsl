@@ -27,10 +27,6 @@ echo -e "Username : $Login " | lolcat
 echo -e "Password : $Pass" | lolcat
 echo -e "-----------------------------" | lolcat
 echo -e "Aktif Sampai      : $exp" | lolcat
-echo -e "Config OpenVPN TCP: http://$IP:82/client-tcp-2021.ovpn"
-echo -e "Config OpenVPN UDP: http://$IP:82/client-udp-2021.ovpn"
-echo -e "Config OpenVPN TCP: http://$IP:82/client-tcp-2069.ovpn"
-echo -e "Config OpenVPN UDP: http://$IP:82/client-udp-2069.ovpn"
 echo -e "=============================" | lolcat
 
 echo -e "Mod by Sulaiman L" | lolcat
